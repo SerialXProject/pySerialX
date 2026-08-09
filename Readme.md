@@ -67,7 +67,7 @@ device.set(int, 'setpoint', 25)
 
 Per una documentazione completa, esempi dettagliati e guide avanzate, visita:
 
-📖 **[http://pasqualo.local:3001](http://SerialXProject.github.io/serialx-docs)**
+📖 **[http://SerialXProject.github.io/serialx-docs](http://SerialXProject.github.io/serialx-docs)**
 
 ## Versione
 
