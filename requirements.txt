@@ -3,3 +3,4 @@ build
 
 # For Tests only
 python-dotenv
+pytest
