@@ -73,7 +73,7 @@ class SerialXInterpreter:
     @staticmethod
     def _encode_set(parts: list[str]) -> str | None:
         if len(parts) < 4:
-            print("Comando set incompleto: set <type> <name> <value>")
+            print("Command set incomplete: set <type> <name> <value>")
             return None
 
         tipo = parts[1]
@@ -82,7 +82,7 @@ class SerialXInterpreter:
 
         type_code = SerialXInterpreter.JIT_TYPE_CODES.get(tipo)
         if not type_code:
-            print(f"Tipo non valido: {tipo}")
+            print(f"Type not valid: {tipo}")
             return None
 
         try:
@@ -96,9 +96,9 @@ class SerialXInterpreter:
                     elif v in ("false", "0"):
                         valore = 0
                     else:
-                        raise ValueError("Bool deve essere true/false o 0/1")
+                        raise ValueError("Bool must be true/false or 0/1")
         except ValueError as e:
-            print(f"Valore non valido per {name}: {valore} ({e})")
+            print(f"Value not valid for {name}: {valore} ({e})")
             return None
 
         return (
@@ -108,7 +108,7 @@ class SerialXInterpreter:
     @staticmethod
     def _encode_get(parts: list[str], virtual: bool = False) -> str | None:
         if len(parts) < 3:
-            print("Comando get incompleto: get <type> <name>")
+            print("Command get incomplete: get <type> <name>")
             return None
 
         tipo = parts[1]
@@ -116,7 +116,7 @@ class SerialXInterpreter:
 
         type_code = SerialXInterpreter.JIT_TYPE_CODES.get(tipo)
         if not type_code:
-            print(f"Tipo non valido: {tipo}")
+            print(f"Type not valid: {tipo}")
             return None
 
         if virtual:
