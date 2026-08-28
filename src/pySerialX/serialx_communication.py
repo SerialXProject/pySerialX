@@ -1,10 +1,12 @@
 import pySerialX.core.arduino_controller
+import pySerialX.core.tcp_controller
 from pySerialX.serialx_jit_interpreter import SerialXInterpreter
 
 class SerialXCommunication:
     """Management the comunication with Arduino with JIT Interpreter and type checking"""
 
     ERROR_PREFIX = "E|"
+    DEFAULT_TCP_PORT = 9600
 
     def _read_all_lines(self, timeout=1) -> str:
         """Read all lines from the Arduino until a timeout occurs and return them as a single string."""
@@ -25,8 +27,14 @@ class SerialXCommunication:
     def __init__(self, port, baud_rate=9600, jit=True):
         """Initialize the SerialXCommunication with the specified serial port and baud rate."""
         try:
-            self.communication = pySerialX.core.arduino_controller.ArduinoController(port, baud_rate)
-            print(f"Connected to {port} at {baud_rate} baud")
+            if port == "Net/Tcp":
+                host = baud_rate
+                self.communication = pySerialX.core.tcp_controller.TcpController(host, self.DEFAULT_TCP_PORT)
+                print(f"Connected to {host}:{self.DEFAULT_TCP_PORT} (TCP)")
+                print(self._read_all_lines())
+            else:
+                self.communication = pySerialX.core.arduino_controller.ArduinoController(port, baud_rate)
+                print(f"Connected to {port} at {baud_rate} baud")
         except Exception as e:
             print(f"Error during connection to {port}: {e}")
             raise
@@ -70,7 +78,7 @@ class SerialXCommunication:
             return self.info
 
         else:
-            data = self.communication.read_line(timeout=1)
+            data = self.communication.read_line(timeout=2)
             if data is None:
                 raise TimeoutError("Timeout: Nessuna risposta da Arduino")
             elif data.startswith(self.ERROR_PREFIX):

@@ -1,7 +1,6 @@
 import pySerialX.serialx_communication
 import pySerialX.version
 
-
 class SerialX:
     ERROR_PREFIX = "E|"
 
@@ -9,10 +8,7 @@ class SerialX:
         self.communication = pySerialX.serialx_communication.SerialXCommunication(
             port, baud_rate, True
         )
-        """self.supported_types = [
-            "bool", "int", "float", "string", "char", "charstring",
-            "uint8_t", "uint16_t", "uint32_t", "long", "double"
-        ]"""
+
         self._type_map = {
             "bool": lambda x: str(x).strip() in ("1", "true", "True"),
             "int": int,
