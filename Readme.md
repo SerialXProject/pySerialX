@@ -29,7 +29,7 @@ PySerialX è ideale per:
 ## Installazione
 
 ```bash
-pip install pyserialx @ http://github.com/SerialXProject/pySerialX/releases/latest/download/pyserialx.whl
+pip install pyserialx @ https://github.com/SerialXProject/pySerialX/releases/download/v1.1.0/pyserialx-1.1.0-py3-none-any.whl
 ```
 
 ## Utilizzo rapido
@@ -47,6 +47,21 @@ value = device.get(int, 'temperatura')
 device.set(int, 'setpoint', 25)
 ```
 
+## Supporto a Net/Tcp
+
+A partire dalla versione **1.1.0**, `pySerialX` supporta la comunicazione via rete Net/Tcp. 
+
+Per utilizzare la connessione TCP anziché una porta seriale, istanzia la classe `SerialX` specificando l'indirizzo IP del dispositivo nel parametro `baud_rate`:
+
+```python
+from pySerialX import SerialX
+
+# Connessione via Net/Tcp
+device = SerialX(port='Net/Tcp', baud_rate="192.168.1.52")
+```
+
+> Nota sulla porta di rete: Attualmente la porta TCP è fissa sul valore 9600 e non è modificabile. La possibilità di specificare una porta personalizzata verrà introdotta nei prossimi aggiornamenti.
+
 ## Linguaggio SerialX
 
 **SerialX** è un linguaggio di programmazione specializzato progettato specificamente per la comunicazione efficiente con microcontrollori Arduino. È optimizzato per:
@@ -56,9 +71,9 @@ device.set(int, 'setpoint', 25)
 - **Comunicazione rapida**: Protocollo ottimizzato per la trasmissione seriale
 - **Compatibilità universale**: Funziona su tutte le schede Arduino e compatibili
 
-## SerialX_JIT: Compilazione Just-In-Time ad alte performance
+## SerialX_JIT: Interpretazione Just-In-Time ad alte performance
 
-**SerialX_JIT** è il motore di compilazione Just-In-Time che alimenta PySerialX. Offre:
+**SerialX_JIT** è il motore di interpretazione Just-In-Time che alimenta PySerialX. Offre:
 
 - **Comunicazione più veloce**: Ottimizza la trasmissione dei dati via seriale
 - **Interprete Arduino più leggero**: Riduce il carico computazionale sulla scheda Arduino
@@ -71,4 +86,4 @@ Per una documentazione completa, esempi dettagliati e guide avanzate, visita:
 
 ## Versione
 
-PySerialX v1.0.4 - Con supporto per integrazione Python completa
+PySerialX v1.1.0 - Aggiunto supporto per comunicazione Net/Tcp

@@ -16,11 +16,18 @@ elif sys.platform.startswith("linux") or sys.platform.startswith("darwin"):
 else:
     raise OSError(f"Sistema operativo non supportato: {sys.platform}")
 
+# Override: se è impostata NET_TCP_HOST, usa la connessione TCP
+net_tcp_host = os.getenv("NET_TCP_HOST")
+if net_tcp_host:
+    port = "Net/Tcp"
+    baud = net_tcp_host
+
 print(f"Uso della porta: {port} con baudrate: {baud}")
 
 
 # Create SerialX instance
-SerialXInstance = SerialX(port)
+SerialXInstance = SerialX(port, baud)
+print(SerialXInstance.info())
 
 print("=== SERIALX TEST START ===")
 
@@ -56,7 +63,7 @@ def read_all_values():
 
     values["char_array"]  = SerialXInstance.get("charstring", "char_array")
     print("CHARSTRING OK")
-
+    
     values["byte_var"]    = SerialXInstance.get("uint8_t", "byte_var")
     print("UINT8_t OK")
 
@@ -65,7 +72,7 @@ def read_all_values():
 
     values["dword_var"]   = SerialXInstance.get("uint32_t", "dword_var")
     print("UINT32_t OK")
-
+    
     values["long_var"]    = SerialXInstance.get("long", "long_var")
     print("LONG OK")
 
@@ -97,8 +104,8 @@ print("\n--- EXECUTING SETS ---")
 
 expected_values = {}
 
-SerialXInstance.set("bool", "led_state", 1)
-expected_values["led_state"] = 1
+SerialXInstance.set("bool", "led_state", True)
+expected_values["led_state"] = True
 print("SET BOOL OK")
 
 SerialXInstance.set("int", "temperature", 30)

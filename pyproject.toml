@@ -1,7 +1,7 @@
 [project]
 name = "pySerialX"
-version = "0.1.0"
-description = "SerialX Project"
+version = "1.1.0"
+description = "SerialXProject"
 authors = [{ name = "PredestinatoNew" }]
 dependencies = []
 
