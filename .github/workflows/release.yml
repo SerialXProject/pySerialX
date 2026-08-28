@@ -30,7 +30,6 @@ jobs:
       - name: Build package
         run: |
           python -m build
-          cp dist/*.whl dist/pyserialx.whl
 
       - name: Create Release and Upload Assets
         uses: softprops/action-gh-release@v2
