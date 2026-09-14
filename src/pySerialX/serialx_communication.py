@@ -99,9 +99,9 @@ class SerialXCommunication:
                 print(f"Line not recognized: {v['raw']}")
                 continue
             if use_values:
-                print(f"{v['name']:10} | {v['type']:5} | {v['value']:9} | {v['can_set']}")
+                print(f"{v['name']:10} | {v['type']:5} | {v['value']:9} | {v['can_set'] + (v['is_virtual'] if ' (isVirtual)'  else '')}")
             else:
-                print(f"{v['name']:10} | {v['type']:5} | {v['can_set']}")
+                print(f"{v['name']:10} | {v['type']:5} | {v['can_set'] + (v['is_virtual'] if ' (isVirtual)'  else '')}")
 
         print("\nFunzioni disponibili:")
         print("Name")

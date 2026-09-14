@@ -225,6 +225,7 @@ class SerialXInterpreter:
                     "type": tipo_nome,
                     # "value": value,
                     "can_set": flag == "x",
+                    "is_virtual": flag == "v",
                     "unrecognized": False,
                 }
             )
