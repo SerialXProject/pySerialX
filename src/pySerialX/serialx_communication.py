@@ -127,4 +127,4 @@ class SerialXCommunication:
                 print(f"  {name} ({t.code})")
 
     def close(self):
-        self.communication.chiudi()
+        self.communication.close()

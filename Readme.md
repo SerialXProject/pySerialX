@@ -82,7 +82,7 @@ device = SerialX(port='Net/Tcp', baud_rate="192.168.1.52")
 
 Per una documentazione completa, esempi dettagliati e guide avanzate, visita:
 
-📖 **[http://SerialXProject.github.io/serialx-docs](http://SerialXProject.github.io/serialx-docs)**
+📖 **[https://SerialXProject.github.io/serialx-docs](https://SerialXProject.github.io/serialx-docs)**
 
 ## Versione
 
